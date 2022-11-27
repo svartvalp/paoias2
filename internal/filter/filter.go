@@ -6,7 +6,7 @@ import (
 	"github.com/svartvalp/paoias2/internal/model"
 )
 
-const mathC = 1000.0
+const mathC = 10.0
 
 type Filter struct {
 	coefficients []int
@@ -39,7 +39,7 @@ func (f *Filter) lineTime(i float64) []model.ArgFunc {
 func (f *Filter) calcNewRes(d int, i float64) float64 {
 	var sum float64
 	for t := d; t < f.filterCount+d; t++ {
-		sum += float64(f.coefficients[t-d]) * mathC * math.Sin(i*float64(d))
+		sum += float64(f.coefficients[t-d]) * mathC * math.Sin(i*float64(t))
 	}
 	return sum
 }
